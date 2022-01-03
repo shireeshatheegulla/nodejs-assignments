@@ -1,7 +1,16 @@
-const fs= require("fs")
-const http= require("http")
-const server =http.createServer((req,res)=>{
-    const file=fs.readFileSync("index.html", "utf8");
-    res.end((file))
+const fs=require("fs");
+const http=require("http");
+
+fs.writeFile("index.html","<h1>Hello World</h1>",(err)=>{
+    console.log(err);
 });
-server.listen(3000,"localhost")
+
+http.createServer((req,res)=>{
+    var data=fs.readFileSync("index.html",'utf-8');
+    console.log(data)
+    res.writeHead(200,{'Content-type':'text/html'});
+    res.end(data);
+}).listen(3000,()=>{
+    console.log("server is listening to 3000");
+});
+
