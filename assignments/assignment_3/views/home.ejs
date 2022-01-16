@@ -1,0 +1,25 @@
+<html>
+<head>
+</head>
+<body>
+
+<h2>Express Js</h2>
+<div class="container"></div>
+<% users.forEach(user => {%>
+    <div>
+        <image src="<%= user.image%>"  alt="avatar"/>
+        <h3><%=user.name %></h3>
+        <p><%=user.email %></p>
+    
+    </div>
+
+<% }) %>
+
+</table>
+<div>
+    <a href="/form">ADD</a>
+</div>
+
+</body>
+</html>
+
