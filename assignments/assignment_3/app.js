@@ -1,35 +1,37 @@
 const express=require("express");
-const bodyparser=require("body-parser")
-const app=express()
+const faker=require("faker");
+const bodyparser=require("body-parser");
+const app=express();
 
-app.use(bodyparser());
+app.use(express.static("public"));
+
+app.use(bodypcarser.urlencoded({extended:false}))
+
 var users=[];
+for(let i=0;i<5;i++){
 users.push({
-    name:"siri",
-    email:"siri@gmail.com",
-    age:24,
-    city:"siddipet",
-    profession:"student",
+    name:faker.name.findName(),
+    email:faker.internet.email(),
+    image:faker.image.image()
 
 });
+}
 
 app.set('views','./views');
 app.set('view engine','ejs');
 
 app.get("/",(req,res) =>{
-    res.render("home.ejs",{users});
+    res.render("home",{users});
 });
 app.get("/form",(req,res) =>{
-    res.render("form.ejs");
+    res.render("form");
 });
 
-app.post("/add/user",(req,res) =>{
+app.post("/user/add",(req,res) =>{
     users.push({
         name:req.body.name,
         email:req.body.email,
-        age:req.body.age,
-        city:req.body.city,
-        profession:req.body.profession
+        image:faker.image.image()
     })
 
     res.redirect("/");
